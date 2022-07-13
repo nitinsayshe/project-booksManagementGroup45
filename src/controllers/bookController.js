@@ -162,7 +162,7 @@ const updateBookbyId = async function (req, res) {
             if (!validateDate.test(releasedAt)) return res.status(400).send({ status: false, message: "date must be in format  YYYY-MM-DD!!!", });
         }
         if (req.body.hasOwnProperty("excerpt")) {
-            if (!isValidExcerpt(excerpt)) return res.status(400).send({ status: false, message: "invalid excerpt details" });
+            if (!isValid(excerpt)) return res.status(400).send({ status: false, message: "invalid excerpt details" });
         }
         let updatedBook = await bookModel.findByIdAndUpdate(bookId, req.body, { new: true })
         return res.status(200).send({ status: true, data: updatedBook })
